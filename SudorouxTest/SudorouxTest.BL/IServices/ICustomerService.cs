@@ -5,6 +5,6 @@ namespace SudorouxTest.BL.IServices
 {
     public interface ICustomerService
     {
-        void SubmitCustomer(CustomerDto dto);
+        byte[] SubmitCustomer(CustomerDto dto);
     }
 }
