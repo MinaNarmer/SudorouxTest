@@ -8,7 +8,7 @@ namespace SudorouxTest.BL.Services
 {
     public class CustomHelpers : ICustomHelpers
     {
-        public async Task<MemoryStream> PostExternalApi<T>(T model,string url)
+        public async Task<MemoryStream> PostExternalApi<T>(T model, string url)
         {
 
             using HttpClient client = new HttpClient();

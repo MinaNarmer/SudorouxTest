@@ -9,7 +9,7 @@ namespace SudorouxTest.BL.Services
         public string SubmitCustomer(CustomerDto dto)
         {
             var result = JsonConvert.SerializeObject(dto);
-            return result ;
+            return result;
         }
     }
 }

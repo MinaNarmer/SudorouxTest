@@ -32,7 +32,7 @@ namespace SudorouxTest.MVC.Controllers
             if (ModelState.IsValid)
             {
 
-                var stream = await  _helper.PostExternalApi(model, _Configuration["apiUrl"]);
+                var stream = await _helper.PostExternalApi(model, _Configuration["apiUrl"]);
                 var fileName = "Customer.json";
                 return File(stream, "application/json", fileName);
             }
@@ -45,5 +45,5 @@ namespace SudorouxTest.MVC.Controllers
     }
 }
 
-    
+
 
