@@ -1,13 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using SudorouxTest.BL.IServices;
 using SudorouxTest.MVC.Models;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SudorouxTest.MVC.Controllers
 {
     public class CustomerController : Controller
     {
+        private readonly ICustomHelpers _helper;
+        private readonly IConfiguration _Configuration;
+
+
+        public CustomerController(ICustomHelpers helper, IConfiguration configuration)
+        {
+            _helper = helper;
+            _Configuration = configuration;
+        }
+
         // GET: CustomerController/Create
         public ActionResult Create()
         {
@@ -19,38 +29,21 @@ namespace SudorouxTest.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CustomerViewModel model)
         {
-
             if (ModelState.IsValid)
             {
-                string apiUrl = "https://localhost:44328/api/customers";
 
-                using (HttpClient client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Clear();
-                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(model);
-                    var content = new StringContent(json, Encoding.UTF8, "application/json"); ;
-
-                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var data = await response.Content.ReadAsStringAsync();
-                        var fileName = "customer.json";
-
-                        var bytes= Encoding.UTF8.GetBytes(data);
-
-                        var stream = new System.IO.MemoryStream(bytes);
-                        return File(stream, "application/json", fileName);
-                    }
-
-                }
-                return View(ModelState);
+                var stream = await  _helper.PostExternalApi(model, _Configuration["apiUrl"]);
+                var fileName = "Customer.json";
+                return File(stream, "application/json", fileName);
             }
+
             else
             {
                 return View(model);
             }
         }
-
     }
 }
+
+    
+
