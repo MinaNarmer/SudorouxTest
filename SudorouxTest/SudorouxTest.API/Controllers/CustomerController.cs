@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using SudorouxTest.BL.Dtos;
 using SudorouxTest.BL.IServices;
-
-
+using System.Collections;
 
 namespace SudorouxTest.API.Controllers
 {
@@ -17,7 +17,11 @@ namespace SudorouxTest.API.Controllers
             _customerService = customerService;
         }
 
-        // POST api/customers
+        /// <summary>
+        /// This Api convert the input model to json 
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns> Returns the converted object</returns>
         [HttpPost]
         public IActionResult Post([FromBody] CustomerDto dto)
         {

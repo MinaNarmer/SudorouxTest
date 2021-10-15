@@ -1,13 +1,15 @@
-﻿using SudorouxTest.BL.Dtos;
+﻿using Newtonsoft.Json;
+using SudorouxTest.BL.Dtos;
 using SudorouxTest.BL.IServices;
 
 namespace SudorouxTest.BL.Services
 {
     public class CustomerService : ICustomerService
     {
-        public byte[] SubmitCustomer(CustomerDto dto)
+        public string SubmitCustomer(CustomerDto dto)
         {
-            throw new System.NotImplementedException();
+            var result = JsonConvert.SerializeObject(dto);
+            return result ;
         }
     }
 }
