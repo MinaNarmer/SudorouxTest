@@ -5,7 +5,7 @@ namespace SudorouxTest.BL.Services
 {
     public class CustomerService : ICustomerService
     {
-        public void SubmitCustomer(CustomerDto dto)
+        public byte[] SubmitCustomer(CustomerDto dto)
         {
             throw new System.NotImplementedException();
         }

@@ -4,5 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SudorouxTest.BL\SudorouxTest.BL.csproj" />
+  </ItemGroup>
+
 
 </Project>
