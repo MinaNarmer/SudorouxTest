@@ -5,6 +5,6 @@ namespace SudorouxTest.BL.IServices
 {
     public interface ICustomHelpers
     {
-        Task<MemoryStream> PostExternalApi<T>(T model,string url);
+        Task<MemoryStream> PostExternalApi<T>(T model, string url);
     }
 }
