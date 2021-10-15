@@ -31,21 +31,8 @@ namespace SudorouxTest.API
 
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Sudoroux API",
-                    Version = "v1",
-                    Description = "Description for the API goes here.",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Mina Youssef",
-                        Email = string.Empty,
-                        Url = new Uri("https://Sudoroux.com/"),
-                    },
-                });
-            });
+            services.AddSwaggerGen();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,15 +45,8 @@ namespace SudorouxTest.API
 
             app.UseSwagger();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sudoroux API V1");
-
-                // To serve SwaggerUI at application's root page, set the RoutePrefix property to an empty string.
-                c.RoutePrefix = string.Empty;
-            });
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 

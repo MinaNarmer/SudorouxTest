@@ -17,10 +17,12 @@ namespace SudorouxTest.API.Controllers
             _customerService = customerService;
         }
 
-        // POST api/customers
+        /// <summary>
+        /// This Api convert the input model to json 
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns> Returns the converted object</returns>
         [HttpPost]
-        [ProducesResponseType(typeof(IEnumerable), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         public IActionResult Post([FromBody] CustomerDto dto)
         {
             var result = _customerService.SubmitCustomer(dto);
